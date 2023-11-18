@@ -9,11 +9,11 @@ import lombok.Setter;
 @Getter@Setter@NoArgsConstructor
 public class CategoryDto {
 
-    Integer categoryId;
+    private Integer categoryId;
 
     @NotBlank(message = "Error: categoryTitle is blank!!")
     @Size(max = 100,message = "Error: categoryTitle is more than 100 character!!")
-    String categoryTitle;
+    private String categoryTitle;
     @Size(min=10,message="Error: categoryDescription is less than 10")
-    String categoryDescription;
+    private String categoryDescription;
 }

@@ -9,15 +9,15 @@ import lombok.Setter;
 
 @Setter@Getter@NoArgsConstructor
 public class UserDto {
-    int id;
+    private int id;
     @NotBlank(message = "Error: name is blank!!")
     @Size(min = 4,max = 100,message = "Error: name is less than 4 or more than 100 character!!")
-    String name;
+    private String name;
     @Email(message = "Error: Email is not in proper format!!")
-    String email;
+    private String email;
     @NotBlank(message = "Error: password is blank!!")
     @Size(min = 4,max = 12,message = "Error: password is less than 4 or greater than 12!!")
-    String password;
+    private String password;
     @NotBlank(message = "Error: about section is blank!!")
-    String about;
+    private String about;
 }

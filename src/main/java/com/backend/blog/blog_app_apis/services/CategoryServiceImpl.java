@@ -27,8 +27,8 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public CategoryDto updateCategory(CategoryDto categoryDto, Integer categortyId) {
-        Category category=this.categoryRepo.findById(categortyId).orElseThrow(()-> new ResourceNotFoundException("Category","id",categortyId));
+    public CategoryDto updateCategory(CategoryDto categoryDto, Integer categoryId) {
+        Category category=this.categoryRepo.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("Category","id",categoryId));
         //updating category object according to given categorydto object to store in repo
         category.setCategoryTitle(categoryDto.getCategoryTitle());
         category.setCategoryDescription(categoryDto.getCategoryDescription());
@@ -38,8 +38,8 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public CategoryDto getCategoryById(Integer categortyId) {
-        Category category=this.categoryRepo.findById(categortyId).orElseThrow(()-> new ResourceNotFoundException("category","id",categortyId));
+    public CategoryDto getCategoryById(Integer categoryId) {
+        Category category=this.categoryRepo.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("category","id",categoryId));
         return this.mapper.map(category, CategoryDto.class);
     }
 
@@ -50,8 +50,8 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public void deleteCategory(Integer categortyId) {
-        Category category=this.categoryRepo.findById(categortyId).orElseThrow(()-> new ResourceNotFoundException("category","id",categortyId));
+    public void deleteCategory(Integer categoryId) {
+        Category category=this.categoryRepo.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("category","id",categoryId));
         this.categoryRepo.delete(category);
     }
     
