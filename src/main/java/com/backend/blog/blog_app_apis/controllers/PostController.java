@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.blog.blog_app_apis.payloads.ApiResponse;
 import com.backend.blog.blog_app_apis.payloads.PostDto;
+import com.backend.blog.blog_app_apis.payloads.PostResponse;
 import com.backend.blog.blog_app_apis.services.PostService;
+
+import jakarta.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/api")
@@ -50,9 +54,12 @@ public class PostController {
     }
 
     @GetMapping("/posts")
-    public ResponseEntity<List<PostDto>> getAllPosts(){
-        List<PostDto> postDtos=this.postService.getAllPost();
-        return new ResponseEntity<>(postDtos,HttpStatus.OK);
+    public ResponseEntity<PostResponse> getAllPosts(
+    @RequestParam(name = "pageNumber",defaultValue = "0")Integer pageNumber,
+    @RequestParam(name = "pageSize",defaultValue =  "3")Integer pageSize){
+
+        PostResponse postResponse=this.postService.getAllPost(pageNumber,pageSize);
+        return new ResponseEntity<>(postResponse,HttpStatus.OK);
     }
 
     @PutMapping("/posts/{postId}")

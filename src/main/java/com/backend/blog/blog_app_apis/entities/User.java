@@ -3,8 +3,6 @@ package com.backend.blog.blog_app_apis.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.internal.bytebuddy.dynamic.TypeResolutionStrategy.Lazy;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

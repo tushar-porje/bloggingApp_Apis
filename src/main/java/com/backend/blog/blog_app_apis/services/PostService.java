@@ -2,6 +2,7 @@ package com.backend.blog.blog_app_apis.services;
 
 import java.util.List;
 import com.backend.blog.blog_app_apis.payloads.PostDto;
+import com.backend.blog.blog_app_apis.payloads.PostResponse;
 
 public interface PostService {
     //create
@@ -9,7 +10,7 @@ public interface PostService {
     //getbyid
     PostDto getPostById(Integer postId);
     //getallPost
-    List<PostDto> getAllPost();
+    PostResponse getAllPost(Integer pageNumber,Integer pageSize);
     //update
     PostDto updatePost(PostDto postDto,Integer postId);
     //deletePost

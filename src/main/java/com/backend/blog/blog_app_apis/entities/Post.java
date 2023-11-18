@@ -2,8 +2,6 @@ package com.backend.blog.blog_app_apis.entities;
 
 import java.util.Date;
 
-import org.hibernate.engine.jdbc.env.spi.IdentifierCaseStrategy;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
