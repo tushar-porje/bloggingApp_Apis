@@ -10,7 +10,7 @@ public interface PostService {
     //getbyid
     PostDto getPostById(Integer postId);
     //getallPost
-    PostResponse getAllPost(Integer pageNumber,Integer pageSize);
+    PostResponse getAllPost(Integer pageNumber,Integer pageSize,String sortBy,String order);
     //update
     PostDto updatePost(PostDto postDto,Integer postId);
     //deletePost
@@ -19,4 +19,6 @@ public interface PostService {
     List<PostDto> getPostByUser(Integer userId);
     //getPostByCategory
     List<PostDto> getPostByCategory(Integer categoryId);
+    //search post by keywords
+    List<PostDto> searchPost(String keyword);
 }

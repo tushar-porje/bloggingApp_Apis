@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.backend.blog.blog_app_apis.entities.Category;
@@ -52,8 +53,10 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public PostResponse getAllPost(Integer pageNumber,Integer pageSize) {
-        Pageable p=PageRequest.of(pageNumber, pageSize);
+    public PostResponse getAllPost(Integer pageNumber,Integer pageSize,String sortBy,String order) {
+        Direction direction=order.equalsIgnoreCase("asc")?Direction.ASC:Direction.DESC;
+        
+        Pageable p=PageRequest.of(pageNumber, pageSize, direction,sortBy);
         Page<Post> postPage=this.postRepo.findAll(p);
         List<Post> allPostsInPage=postPage.getContent();
         List<PostDto> allPostDtos=allPostsInPage.stream().map(post->this.mapper.map(post,PostDto.class)).toList();
@@ -95,6 +98,13 @@ public class PostServiceImpl implements PostService{
     public List<PostDto> getPostByCategory(Integer categoryId) {
         Category category=this.categoryRepo.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("Category","id",categoryId));
         List<Post> posts=this.postRepo.findByCategory(category);
+        List<PostDto> postDtos=posts.stream().map(post->this.mapper.map(post, PostDto.class)).toList();
+        return postDtos;
+    }
+
+    @Override
+    public List<PostDto> searchPost(String keyword) {
+        List<Post> posts=this.postRepo.findByPostTitleContaining(keyword);
         List<PostDto> postDtos=posts.stream().map(post->this.mapper.map(post, PostDto.class)).toList();
         return postDtos;
     }
