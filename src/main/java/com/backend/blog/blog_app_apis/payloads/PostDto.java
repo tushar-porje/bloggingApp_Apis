@@ -1,6 +1,10 @@
 package com.backend.blog.blog_app_apis.payloads;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import com.backend.blog.blog_app_apis.entities.Comment;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -20,5 +24,7 @@ public class PostDto {
     private Date addedDate;
     private UserDto user;
     private CategoryDto category;
+
+    private List<CommentDto> comments=new ArrayList<>();
 
 }

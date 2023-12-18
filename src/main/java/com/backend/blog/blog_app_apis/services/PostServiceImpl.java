@@ -60,6 +60,7 @@ public class PostServiceImpl implements PostService{
         Page<Post> postPage=this.postRepo.findAll(p);
         List<Post> allPostsInPage=postPage.getContent();
         List<PostDto> allPostDtos=allPostsInPage.stream().map(post->this.mapper.map(post,PostDto.class)).toList();
+        
         PostResponse postResponse=new PostResponse();
         postResponse.setPostDtos(allPostDtos);
         postResponse.setLastPage(postPage.isLast());
