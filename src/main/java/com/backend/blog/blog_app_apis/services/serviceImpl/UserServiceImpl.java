@@ -1,4 +1,4 @@
-package com.backend.blog.blog_app_apis.services;
+package com.backend.blog.blog_app_apis.services.serviceImpl;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import com.backend.blog.blog_app_apis.entities.User;
 import com.backend.blog.blog_app_apis.exceptions.ResourceNotFoundException;
 import com.backend.blog.blog_app_apis.payloads.UserDto;
 import com.backend.blog.blog_app_apis.repositories.UserRepo;
+import com.backend.blog.blog_app_apis.services.UserService;
 
 @Service
 public class UserServiceImpl implements UserService{

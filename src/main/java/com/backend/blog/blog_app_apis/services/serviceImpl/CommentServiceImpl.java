@@ -1,4 +1,4 @@
-package com.backend.blog.blog_app_apis.services;
+package com.backend.blog.blog_app_apis.services.serviceImpl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import com.backend.blog.blog_app_apis.exceptions.ResourceNotFoundException;
 import com.backend.blog.blog_app_apis.payloads.CommentDto;
 import com.backend.blog.blog_app_apis.repositories.CommentRepo;
 import com.backend.blog.blog_app_apis.repositories.PostRepo;
+import com.backend.blog.blog_app_apis.services.CommentService;
 
 @Service
 public class CommentServiceImpl implements CommentService {

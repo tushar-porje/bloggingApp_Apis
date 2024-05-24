@@ -1,4 +1,4 @@
-package com.backend.blog.blog_app_apis.services;
+package com.backend.blog.blog_app_apis.services.serviceImpl;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +20,7 @@ import com.backend.blog.blog_app_apis.payloads.PostResponse;
 import com.backend.blog.blog_app_apis.repositories.CategoryRepo;
 import com.backend.blog.blog_app_apis.repositories.PostRepo;
 import com.backend.blog.blog_app_apis.repositories.UserRepo;
+import com.backend.blog.blog_app_apis.services.PostService;
 
 @Service
 public class PostServiceImpl implements PostService{

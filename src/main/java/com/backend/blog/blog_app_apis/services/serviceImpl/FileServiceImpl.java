@@ -1,4 +1,4 @@
-package com.backend.blog.blog_app_apis.services;
+package com.backend.blog.blog_app_apis.services.serviceImpl;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +11,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.backend.blog.blog_app_apis.services.FileService;
 
 @Service
 public class FileServiceImpl implements FileService{
