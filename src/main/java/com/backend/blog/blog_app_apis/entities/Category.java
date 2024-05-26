@@ -24,11 +24,11 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    int CategoryId;
+    private int CategoryId;
     @Column(name="title",length = 100,nullable = false)
-    String categoryTitle;
+    private String categoryTitle;
     @Column(name = "description")
-    String categoryDescription;
+    private String categoryDescription;
     @OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    List<Post> posts=new ArrayList<>();
+    private List<Post> posts=new ArrayList<>();
 }

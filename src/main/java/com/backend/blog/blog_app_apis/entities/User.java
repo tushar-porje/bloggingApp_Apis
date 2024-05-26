@@ -1,9 +1,14 @@
 package com.backend.blog.blog_app_apis.entities;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -24,21 +29,52 @@ import lombok.Setter;
 @Getter@Setter@NoArgsConstructor
 @Entity
 @Table(name="users")
-public class User {
+public class User{
     @Id
     @GeneratedValue(strategy =GenerationType.AUTO)
-    int id;
+    private int id;
     @Column(name="user_name",nullable = false,length =100)
-    String name;
-    String email;
-    String password;
-    String about;
+    private String name;
+    private String email;
+    private String password;
+    private String about;
     
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    List<Post> posts=new ArrayList<>();
+    private List<Post> posts=new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_roles", joinColumns=@JoinColumn(name ="user", referencedColumnName = "id"), 
                                     inverseJoinColumns = @JoinColumn(name="role",referencedColumnName = "id"))
 	private Set<Role> roles = new HashSet<>();
+
+    // @Override
+    // public Collection<? extends GrantedAuthority> getAuthorities() {
+    //     List<SimpleGrantedAuthority> authority =roles.stream().map((role)->new SimpleGrantedAuthority(role.getName())).toList();
+    //     return authority;
+    // }
+
+    // @Override
+    // public String getUsername() {
+    //     return this.email;
+    // }
+
+    // @Override
+    // public boolean isAccountNonExpired() {
+    //     return true;
+    // }
+
+    // @Override
+    // public boolean isAccountNonLocked() {
+    //     return true;
+    // }
+
+    // @Override
+    // public boolean isCredentialsNonExpired() {
+    //     return true;
+    // }
+
+    // @Override
+    // public boolean isEnabled() {
+    //     return true;
+    // }
 }

@@ -21,40 +21,39 @@ import com.backend.blog.blog_app_apis.services.CategoryService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/api")
 public class CategoryController {
 
     @Autowired
     CategoryService categoryService;
     
-    //create
-    @PostMapping("/")
+
+    @PostMapping("/categories/")
     public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto categoryDto){
         CategoryDto createdCategoryDto=this.categoryService.createCategory(categoryDto);
         return new ResponseEntity<CategoryDto>(createdCategoryDto,HttpStatus.CREATED);
     }
-    //get
-    @GetMapping("/{categoryId}")
+
+    @GetMapping("/categories/{categoryId}")
     public ResponseEntity<CategoryDto> getCategoryById(@PathVariable Integer categoryId){
         CategoryDto categoryDto=this.categoryService.getCategoryById(categoryId);
         return ResponseEntity.ok(categoryDto);
     }
-    //getall
-    @GetMapping("/")
+
+    @GetMapping("/categories/")
     public ResponseEntity<List<CategoryDto>> getAllCategory(){
         List<CategoryDto> categoryDtos=this.categoryService.getAllCategories();
         return ResponseEntity.ok(categoryDtos);
     }
 
-    //update
-    @PutMapping("/{categoryId}")
+    
+    @PutMapping("/categories/{categoryId}")
     public ResponseEntity<CategoryDto> updateCategory(@Valid @RequestBody CategoryDto categoryDto,@PathVariable Integer categoryId){
         CategoryDto updatedCategoryDto=this.categoryService.updateCategory(categoryDto, categoryId);
         return new ResponseEntity<CategoryDto>(updatedCategoryDto,HttpStatus.OK);
     }
  
-    //delete
-    @DeleteMapping("/{categoryId}")
+    @DeleteMapping("/categories/{categoryId}")
     public ResponseEntity<ApiResponse> deleteCategory(@PathVariable Integer categoryId){
         this.categoryService.deleteCategory(categoryId);
         return ResponseEntity.ok(new ApiResponse("category of id: " +categoryId +" deleted successfully",true));

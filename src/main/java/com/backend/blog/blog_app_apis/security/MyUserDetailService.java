@@ -23,7 +23,8 @@ public class MyUserDetailService implements UserDetailsService{
         
         User user=userRepo.findByEmail(username).orElseThrow(()-> new ResourceNotFoundException("User", "email", username));
         
-        return new UserDetail(user.getEmail(),passwordEncoder.encode(user.getPassword()),user.getRoles());
+        UserDetails userDetails= new UserDetail(user.getEmail(),passwordEncoder.encode(user.getPassword()),user.getRoles());
+        return userDetails;
     }
     
 }

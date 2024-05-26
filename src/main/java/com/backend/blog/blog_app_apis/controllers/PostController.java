@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,7 +68,7 @@ public class PostController {
         return new ResponseEntity<>(postDto,HttpStatus.OK);
     }
 
-    @GetMapping("/posts")
+    @GetMapping("/posts/")
     public ResponseEntity<PostResponse> getAllPosts(
     @RequestParam(name = "pageNumber",defaultValue = "0")Integer pageNumber,
     @RequestParam(name = "pageSize",defaultValue =  "3")Integer pageSize,
@@ -78,6 +79,7 @@ public class PostController {
         return new ResponseEntity<>(postResponse,HttpStatus.OK);
     }
 
+    
     @PutMapping("/posts/{postId}")
     public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto,@PathVariable Integer postId){
         PostDto updatedPostDto=this.postService.updatePost(postDto, postId);

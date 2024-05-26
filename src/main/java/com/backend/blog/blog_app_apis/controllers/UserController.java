@@ -22,41 +22,40 @@ import com.backend.blog.blog_app_apis.services.UserService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api")
 public class UserController {
     
     @Autowired
     UserService userService;
 
-    @PostMapping("/")
+    @PostMapping("/users/")
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto){
         UserDto createdUserDto=this.userService.createUser(userDto);
         return new ResponseEntity<UserDto>(createdUserDto,HttpStatus.CREATED);
     }
 
     //get(/userId)
-    @GetMapping("/{userId}")
+    @GetMapping("/users/{userId}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Integer userId){
         UserDto userDto=this.userService.getUserById(userId);
         return ResponseEntity.ok(userDto);
     }
 
-    //get(/)
-    @GetMapping("/")
+    @GetMapping("/users/")
     public ResponseEntity<List<UserDto>> getAllUsers(){
         List<UserDto> usersDto=this.userService.getAllUsers();
         return ResponseEntity.ok(usersDto);
     }
 
     //put(/userid)
-    @PutMapping("/{userId}")
+    @PutMapping("/users/{userId}")
     public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto,@PathVariable Integer userId){
         UserDto updatedUserDto=this.userService.updateUser(userDto, userId);
         return new ResponseEntity<UserDto>(updatedUserDto,HttpStatus.OK);
     }
 
     //delete(/userId)
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/users/{userId}")
     public ResponseEntity<ApiResponse> deleteUser(@PathVariable Integer userId){
         this.userService.deleteUser(userId);
         return ResponseEntity.ok(new ApiResponse("User of id: " +userId +" deleted successfully",true));
