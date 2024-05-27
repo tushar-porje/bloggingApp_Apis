@@ -44,17 +44,15 @@ public class AuthController {
         
         String token = this.helper.generateToken(userDetails);
 
-        JwtAuthResponse response = JwtAuthResponse.builder().token(token).build();
+        JwtAuthResponse response = JwtAuthResponse.builder().token(token).username(userDetails.getUsername()).build();
         
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     private void doAuthenticate(String email, String password) {
-
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(email, password);
         try {
             manager.authenticate(authentication);
-            System.out.println("inside doauth");
         } catch (BadCredentialsException e) {
             throw new BadCredentialsException(" Invalid Username or Password  !!");
         }
