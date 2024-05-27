@@ -5,11 +5,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import com.backend.blog.blog_app_apis.entities.User;
 import com.backend.blog.blog_app_apis.exceptions.ResourceNotFoundException;
 import com.backend.blog.blog_app_apis.repositories.UserRepo;
 
+@Component
 public class MyUserDetailService implements UserDetailsService{
 
     @Autowired
