@@ -48,7 +48,7 @@ public class SecurityConfiguration{
                 // .requestMatchers("/api/posts/").hasRole("ADMIN")
                 // .requestMatchers("api/users/").hasRole("USER")
                 // .requestMatchers("api/categories/").hasRole("USER")
-                .requestMatchers("/api/auth/login").permitAll()
+                .requestMatchers("/api/auth/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and().exceptionHandling(ex -> ex.authenticationEntryPoint(point))

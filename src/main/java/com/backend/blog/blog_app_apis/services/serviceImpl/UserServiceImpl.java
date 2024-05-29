@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.backend.blog.blog_app_apis.entities.User;
 import com.backend.blog.blog_app_apis.exceptions.ResourceNotFoundException;
 import com.backend.blog.blog_app_apis.payloads.UserDto;
+import com.backend.blog.blog_app_apis.repositories.RoleRepo;
 import com.backend.blog.blog_app_apis.repositories.UserRepo;
 import com.backend.blog.blog_app_apis.services.UserService;
 
@@ -19,11 +20,22 @@ public class UserServiceImpl implements UserService{
     private UserRepo userRepo;
 
     @Autowired
+    private RoleRepo roleRepo;
+
+    @Autowired
     private ModelMapper mapper;
 
     @Override
     public UserDto createUser(UserDto userDto) {
         User user=dtoToUser(userDto);
+        User savedUser=userRepo.save(user);
+        return userToDto(savedUser);
+    }
+
+    @Override
+    public UserDto registerUser(UserDto userDto) {
+        User user=dtoToUser(userDto);
+        user.getRoles().add(roleRepo.findByName("ROLE_USER").get());
         User savedUser=userRepo.save(user);
         return userToDto(savedUser);
     }
@@ -66,5 +78,6 @@ public class UserServiceImpl implements UserService{
     private UserDto userToDto(User user){
         return this.mapper.map(user, UserDto.class);
     }
+
     
 }
