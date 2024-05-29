@@ -1,5 +1,9 @@
 package com.backend.blog.blog_app_apis.payloads;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -20,4 +24,6 @@ public class UserDto {
     private String password;
     @NotBlank(message = "Error: about section is blank!!")
     private String about;
+
+    private Set<RoleDto> roles = new HashSet<>();
 }
